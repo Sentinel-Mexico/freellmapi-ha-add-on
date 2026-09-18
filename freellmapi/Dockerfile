@@ -35,8 +35,8 @@ FROM ${BUILD_FROM}
 ARG BUILD_VERSION
 ARG BUILD_ARCH
 
-LABEL io.hass.name="FreeLLMApi for HA"
-LABEL io.hass.description="Port of FreeLLMApi for Home Assistant - 34+ free LLM providers behind one OpenAI-compatible endpoint"
+LABEL io.hass.name="FreeLLMApi"
+LABEL io.hass.description="OpenAI-compatible LLM gateway - 34+ free providers"
 LABEL io.hass.version="${BUILD_VERSION}"
 LABEL io.hass.type="addon"
 
@@ -60,11 +60,6 @@ COPY --from=builder /build/client/dist /opt/freellmapi/client/dist
 COPY --from=builder /build/cli/dist /opt/freellmapi/cli/dist
 COPY --from=builder /build/cli/package.json /opt/freellmapi/cli/package.json
 
-# Rebuild native modules (better-sqlite3) against Alpine musl libc
-RUN apk add --no-cache --virtual .build-deps python3 make g++ \
-  && cd /opt/freellmapi && npm rebuild better-sqlite3 \
-  && apk del .build-deps
-
 RUN ln -sf /opt/freellmapi/cli/dist/index.js /usr/local/bin/freellmapi 2>/dev/null || true
 
 COPY run.sh /
@@ -74,6 +69,6 @@ RUN rm -f /etc/nginx/http.d/default.conf
 RUN chmod a+x /run.sh
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-    CMD curl -sf http://127.0.0.1:${PORT:-39101}/v1/models >/dev/null || exit 1
+    CMD curl -sf http://127.0.0.1:3001/v1/models >/dev/null || exit 1
 
 CMD [ "/run.sh" ]

@@ -1,5 +1,5 @@
 name: FreeLLMApi for HA
-version: "1.0.0"
+version: "1.0.1"
 slug: freellmapi
 description: >-
   Port of FreeLLMApi for Home Assistant. Aggregates 34+ free LLM providers
@@ -20,15 +20,15 @@ panel_icon: "mdi:robot-outline"
 panel_title: FreeLLMApi
 
 ports:
-  3001/tcp: 3001
+  39101/tcp: 39101
 ports_description:
-  3001/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
+  39101/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
 
 map:
   - app_config:rw
 
 options:
-  api_port: 3001
+  api_port: 39101
   log_level: "info"
   db_engine: "sqlite"
   mariadb_host: "core-mariadb"

@@ -23,7 +23,7 @@ endpoint — running inside your Home Assistant as an add-on.
 5. Start the add-on and open the **Web UI** to add your free-tier provider keys.
 6. Point Hermes, OpenClaw, or any OpenAI client at:
    ```
-   http://<YOUR_HA_IP>:3001/v1
+   http://<YOUR_HA_IP>:39101/v1
    ```
 
 ## Features
@@ -48,7 +48,7 @@ endpoint — running inside your Home Assistant as an add-on.
 Set the LLM base URL in Hermes to:
 
 ```
-http://homeassistant.local:3001/v1
+http://homeassistant.local:39101/v1
 ```
 
 ### OpenClaw
@@ -56,7 +56,7 @@ http://homeassistant.local:3001/v1
 Set `LLM_BASE_URL` in the OpenClaw bridge:
 
 ```
-LLM_BASE_URL=http://homeassistant.local:3001/v1
+LLM_BASE_URL=http://homeassistant.local:39101/v1
 LLM_API_KEY=freellmapi-...
 ```
 
@@ -66,7 +66,7 @@ LLM_API_KEY=freellmapi-...
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="http://homeassistant.local:3001/v1",
+    base_url="http://homeassistant.local:39101/v1",
     api_key="freellmapi-..."
 )
 
@@ -80,7 +80,7 @@ r = client.chat.completions.create(
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| API Port | `3001` | Port for the /v1 endpoint |
+| API Port | `39101` | Port for the /v1 endpoint |
 | Database Engine | `sqlite` | `sqlite` or `mariadb` |
 | MariaDB Host | `core-mariadb` | Only used when engine is `mariadb` |
 | MariaDB Port | `3306` | Only used when engine is `mariadb` |
@@ -91,14 +91,14 @@ r = client.chat.completions.create(
 ```
 Home Assistant
 +-- FreeLLMApi for HA
-|   +-- API Server (:3001/v1)  <-- Hermes / OpenClaw / any client
+|   +-- API Server (:39101/v1)  <-- Hermes / OpenClaw / any client
 |   +-- Dashboard (Ingress)    <-- HA Web UI
 |   +-- CLI Tools              <-- Add-on Terminal
 |   +-- SQLite / MariaDB       <-- Encrypted key storage
 +-- Hermes Add-on
-|   +-- connects to :3001/v1
+|   +-- connects to :39101/v1
 +-- OpenClaw Add-on
-    +-- connects to :3001/v1
+    +-- connects to :39101/v1
 ```
 
 ## Credits

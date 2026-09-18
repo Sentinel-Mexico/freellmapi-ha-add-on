@@ -69,6 +69,6 @@ RUN rm -f /etc/nginx/http.d/default.conf
 RUN chmod a+x /run.sh
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-    CMD curl -sf http://127.0.0.1:3001/v1/models >/dev/null || exit 1
+    CMD curl -sf http://127.0.0.1:${PORT:-39101}/v1/models >/dev/null || exit 1
 
 CMD [ "/run.sh" ]

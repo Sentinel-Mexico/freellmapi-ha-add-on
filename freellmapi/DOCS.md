@@ -16,27 +16,27 @@ free-tier cap.
 Once the add-on is running, point any OpenAI-compatible client at:
 
 ```
-http://<YOUR_HA_IP>:3001/v1
+http://<YOUR_HA_IP>:39101/v1
 ```
 
 Or from another add-on on the same Home Assistant host:
 
 ```
-http://homeassistant.local:3001/v1
+http://homeassistant.local:39101/v1
 ```
 
 ### Hermes
 
 In the Hermes add-on or integration configuration, set:
 
-- **LLM Base URL**: `http://homeassistant.local:3001/v1`
+- **LLM Base URL**: `http://homeassistant.local:39101/v1`
 - **API Key**: the unified API key from your FreeLLMApi dashboard
 
 ### OpenClaw
 
 In the OpenClaw bridge configuration:
 
-- **LLM_BASE_URL**: `http://homeassistant.local:3001/v1`
+- **LLM_BASE_URL**: `http://homeassistant.local:39101/v1`
 - **LLM_API_KEY**: the unified API key from your FreeLLMApi dashboard
 
 ### Any OpenAI SDK client
@@ -45,7 +45,7 @@ In the OpenClaw bridge configuration:
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="http://<YOUR_HA_IP>:3001/v1",
+    base_url="http://<YOUR_HA_IP>:39101/v1",
     api_key="freellmapi-..."  # from the dashboard
 )
 
@@ -77,7 +77,7 @@ to set this manually if you are migrating from an existing FreeLLMApi instance.
 
 ### API port
 
-The default port is `3001`. Change it only if another service already uses
+The default port is `39101`. Change it only if another service already uses
 that port on your Home Assistant host.
 
 ## CLI tools

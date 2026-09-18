@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Link, useParams } from 'react-router-dom'
-import { ChevronLeft, Merge, Save, Split, Trash2 } from 'lucide-react'
+import { ChevronLeft, Merge, Save, Split, Trash as Trash2 } from 'lucide-react'
 import { useI18n } from '@/i18n'
 import { apiFetch } from '@/lib/api'
 import { addAlias, aliasesFor, removeAlias } from '@/lib/alias-merge'

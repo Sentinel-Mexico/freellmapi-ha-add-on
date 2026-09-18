@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { ArrowDownToLine, Pause, Play, ScrollText, Trash2 } from 'lucide-react'
+import { ArrowDownToLine, Pause, Play, ScrollText, Trash as Trash2 } from 'lucide-react'
 import { PageHeader } from '@/components/page-header'
 import { EmptyState } from '@/components/empty-state'
 import { ConfirmButton } from '@/components/confirm-button'

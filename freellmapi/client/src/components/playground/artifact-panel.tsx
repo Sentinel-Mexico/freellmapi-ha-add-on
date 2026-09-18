@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
-import { Code2, Download, Eye, RefreshCw, X } from 'lucide-react'
+import { Code as Code2, Download, Eye, RefreshCw, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { CopyButton } from '@/components/copy-button'
 import { CodeBlock } from '@/components/code-block'

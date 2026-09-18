@@ -1,12 +1,11 @@
-name: FreeLLMApi
-version: "1.0.0"
+name: FreeLLMApi for HA
+version: "1.0.5"
 slug: freellmapi
 description: >-
-  Aggregate 34+ free LLM providers behind one OpenAI-compatible /v1 endpoint.
-  Smart routing, automatic failover, encrypted key storage, and a built-in
-  dashboard — ready for Hermes, OpenClaw, or any AI integration in your
-  smart home.
-url: "https://github.com/tashfeenahmed/freellmapi"
+  Port of FreeLLMApi for Home Assistant. Aggregates 34+ free LLM providers
+  behind one OpenAI-compatible /v1 endpoint with smart routing, automatic
+  failover, encrypted key storage, and a built-in dashboard.
+url: "https://github.com/Sentinel-Mexico/freellmapi-ha-add-on"
 arch:
   - amd64
   - aarch64
@@ -21,15 +20,15 @@ panel_icon: "mdi:robot-outline"
 panel_title: FreeLLMApi
 
 ports:
-  3001/tcp: 3001
+  39101/tcp: 39101
 ports_description:
-  3001/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
+  39101/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
 
 map:
   - app_config:rw
 
 options:
-  api_port: 3001
+  api_port: 39101
   log_level: "info"
   db_engine: "sqlite"
   mariadb_host: "core-mariadb"

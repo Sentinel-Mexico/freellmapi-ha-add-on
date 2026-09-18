@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
-    base: process.env.VITE_BASE ?? '/',
+    base: process.env.VITE_BASE ?? './',
     envDir: path.resolve(__dirname, '..'),
     define: {
       __SERVER_PORT__: JSON.stringify(String(serverPort)),

@@ -1,12 +1,11 @@
-name: FreeLLMApi
+name: FreeLLMApi for HA
 version: "1.0.0"
 slug: freellmapi
 description: >-
-  Aggregate 34+ free LLM providers behind one OpenAI-compatible /v1 endpoint.
-  Smart routing, automatic failover, encrypted key storage, and a built-in
-  dashboard — ready for Hermes, OpenClaw, or any AI integration in your
-  smart home.
-url: "https://github.com/tashfeenahmed/freellmapi"
+  Port of FreeLLMApi for Home Assistant. Aggregates 34+ free LLM providers
+  behind one OpenAI-compatible /v1 endpoint with smart routing, automatic
+  failover, encrypted key storage, and a built-in dashboard.
+url: "https://github.com/Sentinel-Mexico/freellmapi-ha-add-on"
 arch:
   - amd64
   - aarch64

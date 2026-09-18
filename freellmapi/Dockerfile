@@ -35,8 +35,8 @@ FROM ${BUILD_FROM}
 ARG BUILD_VERSION
 ARG BUILD_ARCH
 
-LABEL io.hass.name="FreeLLMApi"
-LABEL io.hass.description="OpenAI-compatible LLM gateway - 34+ free providers"
+LABEL io.hass.name="FreeLLMApi for HA"
+LABEL io.hass.description="Port of FreeLLMApi for Home Assistant - 34+ free LLM providers behind one OpenAI-compatible endpoint"
 LABEL io.hass.version="${BUILD_VERSION}"
 LABEL io.hass.type="addon"
 

@@ -1,24 +1,27 @@
-# FreeLLMApi — Home Assistant Add-on
+# FreeLLMApi for Home Assistant
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**7.4 billion tokens per month. 34+ free LLM providers. 635 free model
-endpoints. One OpenAI-compatible endpoint — running inside your Home
-Assistant.**
+**Port of [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) for Home Assistant.**
 
-This repository packages [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi)
-as a Home Assistant add-on so you can run a self-hosted AI gateway right next
-to your smart home — no cloud dependency, no subscriptions.
+34+ free LLM providers, 635 free model endpoints, one OpenAI-compatible
+endpoint — running inside your Home Assistant as an add-on.
+
+> This project is a community port. The original FreeLLMApi is developed by
+> [Tashfeen Ahmed](https://github.com/tashfeenahmed/freellmapi) and licensed
+> under MIT.
 
 ## Quick start
 
-1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
-2. Click the **⋮** menu (top-right) → **Repositories**.
-3. Paste this repository URL and click **Add**.
-4. Find **FreeLLMApi** in the store, click **Install**.
+1. In Home Assistant, go to **Settings > Add-ons > Add-on Store**.
+2. Click the three-dot menu (top-right) > **Repositories**.
+3. Paste this repository URL and click **Add**:
+   ```
+   https://github.com/Sentinel-Mexico/freellmapi-ha-add-on
+   ```
+4. Find **FreeLLMApi for HA** in the store, click **Install**.
 5. Start the add-on and open the **Web UI** to add your free-tier provider keys.
 6. Point Hermes, OpenClaw, or any OpenAI client at:
-
    ```
    http://<YOUR_HA_IP>:3001/v1
    ```
@@ -87,18 +90,28 @@ r = client.chat.completions.create(
 
 ```
 Home Assistant
-├── FreeLLMApi Add-on
-│   ├── API Server (:3001/v1)  ← Hermes / OpenClaw / any client
-│   ├── Dashboard (Ingress)    ← HA Web UI
-│   ├── CLI Tools              ← Add-on Terminal
-│   └── SQLite / MariaDB       ← Encrypted key storage
-├── Hermes Add-on
-│   └── connects to :3001/v1
-└── OpenClaw Add-on
-    └── connects to :3001/v1
++-- FreeLLMApi for HA
+|   +-- API Server (:3001/v1)  <-- Hermes / OpenClaw / any client
+|   +-- Dashboard (Ingress)    <-- HA Web UI
+|   +-- CLI Tools              <-- Add-on Terminal
+|   +-- SQLite / MariaDB       <-- Encrypted key storage
++-- Hermes Add-on
+|   +-- connects to :3001/v1
++-- OpenClaw Add-on
+    +-- connects to :3001/v1
 ```
+
+## Credits
+
+This add-on is a port of [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi)
+by Tashfeen Ahmed. All credit for the core LLM gateway goes to the original
+project and its contributors.
 
 ## License
 
 MIT — see [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) for the
 upstream license.
+
+## Maintained by
+
+[Sentinel Mexico](https://github.com/Sentinel-Mexico)

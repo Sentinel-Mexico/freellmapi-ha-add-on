@@ -1,4 +1,7 @@
-# FreeLLMApi Home Assistant Add-on
+# FreeLLMApi for Home Assistant
+
+> Community port of [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi)
+> for Home Assistant. Maintained by [Sentinel Mexico](https://github.com/Sentinel-Mexico).
 
 ## What it does
 
@@ -104,5 +107,5 @@ for details.
 
 ## Support
 
-- [FreeLLMApi GitHub](https://github.com/tashfeenahmed/freellmapi)
-- [Issue tracker](https://github.com/tashfeenahmed/freellmapi/issues)
+- [This add-on's repository](https://github.com/Sentinel-Mexico/freellmapi-ha-add-on)
+- [Original FreeLLMApi project](https://github.com/tashfeenahmed/freellmapi)

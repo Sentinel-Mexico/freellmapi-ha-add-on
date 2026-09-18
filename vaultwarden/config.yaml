@@ -1,5 +1,5 @@
 name: Vaultwarden
-version: "1.0.0"
+version: "1.0.1"
 slug: vaultwarden
 description: >-
   Self-hosted Bitwarden-compatible password manager. Lightweight Rust

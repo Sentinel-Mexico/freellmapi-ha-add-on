@@ -2,7 +2,7 @@
 
 # Vaultwarden for Home Assistant
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](config.yaml)
+[![Version](https://img.shields.io/badge/version-1.0.1-blue?style=for-the-badge)](config.yaml)
 [![License](https://img.shields.io/badge/License-AGPL--3.0-green?style=for-the-badge)](https://github.com/dani-garcia/vaultwarden/blob/main/LICENSE.txt)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Add--on-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Upstream](https://img.shields.io/badge/Upstream-Vaultwarden-blue?style=for-the-badge&logo=github)](https://github.com/dani-garcia/vaultwarden)

@@ -18,6 +18,7 @@
 | [FreeLLMApi for HA](freellmapi/) | OpenAI-compatible LLM gateway with 34+ free providers | 1.0.5 |
 | [Vaultwarden for HA](vaultwarden/) | Self-hosted Bitwarden-compatible password manager | 1.0.0 |
 | [Vikunja for HA](vikunja/) | Self-hosted task and project management | 1.0.0 |
+| [Linkwarden for HA](linkwarden/) | Self-hosted bookmark manager and web archive | 1.0.0 |
 
 ---
 
@@ -78,6 +79,25 @@ Home Assistant
 
 ---
 
+## Linkwarden for HA
+
+A port of [Linkwarden](https://linkwarden.app) by [Daniel](https://github.com/daniel31x13). A collaborative bookmark manager that automatically archives web pages as screenshots, PDFs, and readable articles. Supports collections, tags, full-text search, browser extensions, and a REST API.
+
+**Use it with:** any web browser, browser extensions (Chrome, Firefox, Safari).
+
+```
+Home Assistant
+├── Linkwarden Add-on
+│   ├── Linkwarden Server (:3000)  ◄── Web browser / extensions
+│   ├── Web Interface (Ingress)    ◄── HA Web UI sidebar
+│   ├── PostgreSQL DB              ◄── Bookmark and user storage
+│   └── Archive Storage            ◄── Screenshots, PDFs, articles
+```
+
+[Full documentation →](linkwarden/README.md)
+
+---
+
 ## Installation
 
 1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
@@ -111,6 +131,11 @@ Home Assistant
 │   ├── config.yaml          # Add-on manifest
 │   ├── Dockerfile           # Multi-stage build
 │   └── run.sh               # Startup script (bashio)
+├── linkwarden/              # Linkwarden add-on
+│   ├── translations/        # Add-on translations
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
 ├── README.md                # This file
 └── repository.yaml          # Add-on repository manifest
 ```
@@ -124,13 +149,14 @@ Contributions are welcome. To contribute:
 3. Make your changes and ensure the Docker build works correctly.
 4. Open a Pull Request describing the changes.
 
-For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), or [Vikunja](https://github.com/go-vikunja/vikunja).
+For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), or [Linkwarden](https://github.com/linkwarden/linkwarden).
 
 ## Credits
 
 - **FreeLLMApi** by [Tashfeen Ahmed](https://github.com/tashfeenahmed) — MIT License
 - **Vaultwarden** by [Daniel Garcia](https://github.com/dani-garcia) — AGPL-3.0 License
 - **Vikunja** by the [Vikunja team](https://github.com/go-vikunja) — AGPL-3.0 License
+- **Linkwarden** by [Daniel](https://github.com/daniel31x13) — AGPL-3.0 License
 
 ---
 

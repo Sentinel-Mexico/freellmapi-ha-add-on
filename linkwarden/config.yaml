@@ -1,0 +1,52 @@
+name: Linkwarden
+version: "1.0.0"
+slug: linkwarden
+description: >-
+  Self-hosted bookmark manager and web archive. Save, organize, and preserve
+  web pages with automatic screenshots, full-page archival, tagging, and
+  collections — accessible from within Home Assistant.
+url: "https://github.com/linkwarden/linkwarden"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8102
+ingress_stream: false
+panel_icon: "mdi:bookmark-multiple-outline"
+panel_title: Linkwarden
+
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "Linkwarden web interface"
+
+map:
+  - app_config:rw
+
+options:
+  nextauth_secret: ""
+  registration_enabled: true
+  log_level: "info"
+  smtp_host: ""
+  smtp_port: 587
+  smtp_username: ""
+  smtp_password: ""
+  smtp_from_email: ""
+
+schema:
+  nextauth_secret: "str?"
+  registration_enabled: bool
+  log_level: "list(debug|info|warn|error)"
+  smtp_host: "str?"
+  smtp_port: "port?"
+  smtp_username: "str?"
+  smtp_password: "password?"
+  smtp_from_email: "str?"
+
+startup: application
+stage: experimental
+advanced: false

@@ -60,6 +60,11 @@ COPY --from=builder /build/client/dist /opt/freellmapi/client/dist
 COPY --from=builder /build/cli/dist /opt/freellmapi/cli/dist
 COPY --from=builder /build/cli/package.json /opt/freellmapi/cli/package.json
 
+# Rebuild native modules (better-sqlite3) against Alpine musl libc
+RUN apk add --no-cache --virtual .build-deps python3 make g++ \
+  && cd /opt/freellmapi && npm rebuild better-sqlite3 \
+  && apk del .build-deps
+
 RUN ln -sf /opt/freellmapi/cli/dist/index.js /usr/local/bin/freellmapi 2>/dev/null || true
 
 COPY run.sh /

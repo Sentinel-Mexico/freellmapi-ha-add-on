@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3 — 2026-09-18
+
+### Fixed
+
+- Fixed startup crash caused by better-sqlite3 native module incompatibility.
+  The module is now rebuilt against Alpine musl libc during the Docker build.
+
 ## 1.0.2 — 2026-09-18
 
 ### Changed

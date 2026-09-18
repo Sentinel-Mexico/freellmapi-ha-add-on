@@ -29,11 +29,10 @@ FROM ${BUILD_FROM}
 
 ARG BUILD_VERSION
 
-LABEL \
-    io.hass.name="FreeLLMApi\" \
-    io.hass.description="OpenAI-compatible LLM gateway — 34+ free providers\" \
-    io.hass.version="${BUILD_VERSION}\" \
-    io.hass.type="addon"
+LABEL io.hass.name="FreeLLMApi"
+LABEL io.hass.description="OpenAI-compatible LLM gateway - 34+ free providers"
+LABEL io.hass.version="${BUILD_VERSION}"
+LABEL io.hass.type="addon"
 
 # Install runtime dependencies
 RUN apk add --no-cache \

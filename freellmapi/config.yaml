@@ -1,0 +1,56 @@
+name: FreeLLMApi
+version: "1.0.0"
+slug: freellmapi
+description: >-
+  Aggregate 34+ free LLM providers behind one OpenAI-compatible /v1 endpoint.
+  Smart routing, automatic failover, encrypted key storage, and a built-in
+  dashboard — ready for Hermes, OpenClaw, or any AI integration in your
+  smart home.
+url: "https://github.com/tashfeenahmed/freellmapi"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8099
+ingress_stream: false
+panel_icon: "mdi:robot-outline"
+panel_title: FreeLLMApi
+
+ports:
+  3001/tcp: 3001
+ports_description:
+  3001/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
+
+map:
+  - addon_config:rw
+
+options:
+  api_port: 3001
+  log_level: "info"
+  db_engine: "sqlite"
+  mariadb_host: "core-mariadb"
+  mariadb_port: 3306
+  mariadb_user: ""
+  mariadb_password: ""
+  mariadb_database: "freellmapi"
+  encryption_key: ""
+
+schema:
+  api_port: port
+  log_level: "list(debug|info|warn|error)"
+  db_engine: "list(sqlite|mariadb)"
+  mariadb_host: "str?"
+  mariadb_port: "port?"
+  mariadb_user: "str?"
+  mariadb_password: "password?"
+  mariadb_database: "str?"
+  encryption_key: "str?"
+
+image: "ghcr.io/tashfeenahmed/freellmapi-ha-addon/{arch}"
+startup: application
+stage: experimental
+advanced: false

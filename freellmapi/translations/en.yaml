@@ -1,0 +1,38 @@
+configuration:
+  api_port:
+    name: API Port
+    description: >-
+      Port for the OpenAI-compatible /v1 endpoint. Other services like Hermes
+      or OpenClaw connect to this port.
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting.
+  db_engine:
+    name: Database Engine
+    description: >-
+      Choose SQLite for a simple single-file database (default), or MariaDB
+      if you already run the MariaDB add-on and prefer a shared database server.
+  mariadb_host:
+    name: MariaDB Host
+    description: >-
+      Hostname of the MariaDB server. Use "core-mariadb" if you are running
+      the official Home Assistant MariaDB add-on.
+  mariadb_port:
+    name: MariaDB Port
+    description: Port of the MariaDB server.
+  mariadb_user:
+    name: MariaDB User
+    description: Database username for FreeLLMApi.
+  mariadb_password:
+    name: MariaDB Password
+    description: Database password for FreeLLMApi.
+  mariadb_database:
+    name: MariaDB Database
+    description: Name of the database to use in MariaDB.
+  encryption_key:
+    name: Encryption Key
+    description: >-
+      AES-256 key used to encrypt your provider API keys at rest. Leave empty
+      to auto-generate and persist one. Only set this if you are migrating
+      from an existing FreeLLMApi instance and need to reuse its key.

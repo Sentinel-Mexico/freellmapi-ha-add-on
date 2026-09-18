@@ -1,0 +1,51 @@
+name: AFFiNE
+version: "1.0.0"
+slug: affine
+description: >-
+  Self-hosted knowledge base combining docs, whiteboards, and databases in one
+  app. A privacy-first alternative to Notion with real-time collaboration,
+  offline support, and Markdown compatibility — accessible from within
+  Home Assistant.
+url: "https://github.com/toeverything/AFFiNE"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8103
+ingress_stream: false
+panel_icon: "mdi:notebook-edit-outline"
+panel_title: AFFiNE
+
+ports:
+  3010/tcp: 3010
+ports_description:
+  3010/tcp: "AFFiNE web interface"
+
+map:
+  - app_config:rw
+
+options:
+  server_name: "AFFiNE Self-hosted"
+  log_level: "info"
+  mailer_host: ""
+  mailer_port: 587
+  mailer_user: ""
+  mailer_password: ""
+  mailer_sender: ""
+
+schema:
+  server_name: str
+  log_level: "list(debug|info|warn|error)"
+  mailer_host: "str?"
+  mailer_port: "port?"
+  mailer_user: "str?"
+  mailer_password: "password?"
+  mailer_sender: "str?"
+
+startup: application
+stage: experimental
+advanced: false

@@ -1,0 +1,29 @@
+configuration:
+  server_name:
+    name: Server Name
+    description: >-
+      Display name for this AFFiNE instance. Shown in the application
+      title bar and admin panel.
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting.
+  mailer_host:
+    name: SMTP Host
+    description: >-
+      SMTP server hostname for sending emails (password resets, invitations).
+      Leave empty to disable email features.
+  mailer_port:
+    name: SMTP Port
+    description: >-
+      SMTP server port. Common values: 587 (STARTTLS), 465 (TLS), 25 (plain).
+  mailer_user:
+    name: SMTP Username
+    description: Username for SMTP authentication.
+  mailer_password:
+    name: SMTP Password
+    description: Password for SMTP authentication.
+  mailer_sender:
+    name: SMTP Sender
+    description: >-
+      Email address that AFFiNE sends from (e.g. affine@example.com).

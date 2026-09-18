@@ -19,6 +19,7 @@
 | [Vaultwarden for HA](vaultwarden/) | Self-hosted Bitwarden-compatible password manager | 1.0.0 |
 | [Vikunja for HA](vikunja/) | Self-hosted task and project management | 1.0.0 |
 | [Linkwarden for HA](linkwarden/) | Self-hosted bookmark manager and web archive | 1.0.0 |
+| [AFFiNE for HA](affine/) | Self-hosted knowledge base — docs, whiteboards, and databases | 1.0.0 |
 
 ---
 
@@ -98,6 +99,26 @@ Home Assistant
 
 ---
 
+## AFFiNE for HA
+
+A port of [AFFiNE](https://affine.pro) by [TOEVERYTHING](https://github.com/toeverything). A next-gen knowledge base that combines documents, whiteboards, and databases in one app. Supports rich-text Markdown editing, infinite-canvas whiteboards, real-time collaboration, offline editing, and an AI assistant with bring-your-own-key support.
+
+**Use it with:** any web browser, AFFiNE desktop app.
+
+```
+Home Assistant
+├── AFFiNE Add-on
+│   ├── AFFiNE Server (:3010)      ◄── Web browser / desktop app
+│   ├── Web Interface (Ingress)    ◄── HA Web UI sidebar
+│   ├── PostgreSQL DB              ◄── Document and user storage
+│   ├── Redis Cache                ◄── Real-time sync and sessions
+│   └── File Storage               ◄── Uploaded files and attachments
+```
+
+[Full documentation →](affine/README.md)
+
+---
+
 ## Installation
 
 1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
@@ -136,6 +157,11 @@ Home Assistant
 │   ├── config.yaml          # Add-on manifest
 │   ├── Dockerfile           # Multi-stage build
 │   └── run.sh               # Startup script (bashio)
+├── affine/                  # AFFiNE add-on
+│   ├── translations/        # Add-on translations
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
 ├── README.md                # This file
 └── repository.yaml          # Add-on repository manifest
 ```
@@ -149,7 +175,7 @@ Contributions are welcome. To contribute:
 3. Make your changes and ensure the Docker build works correctly.
 4. Open a Pull Request describing the changes.
 
-For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), or [Linkwarden](https://github.com/linkwarden/linkwarden).
+For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), [Linkwarden](https://github.com/linkwarden/linkwarden), or [AFFiNE](https://github.com/toeverything/AFFiNE).
 
 ## Credits
 
@@ -157,6 +183,7 @@ For contributions to the upstream projects, visit [FreeLLMApi](https://github.co
 - **Vaultwarden** by [Daniel Garcia](https://github.com/dani-garcia) — AGPL-3.0 License
 - **Vikunja** by the [Vikunja team](https://github.com/go-vikunja) — AGPL-3.0 License
 - **Linkwarden** by [Daniel](https://github.com/daniel31x13) — AGPL-3.0 License
+- **AFFiNE** by [TOEVERYTHING](https://github.com/toeverything) — MIT License
 
 ---
 

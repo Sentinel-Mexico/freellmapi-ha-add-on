@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 — 2026-09-18
+
+### Fixed
+
+- Fixed Docker build: removed reference to non-existent frontend directory (frontend is embedded in the Vikunja binary).
+
 ## 1.0.1 — 2026-09-18
 
 ### Changed

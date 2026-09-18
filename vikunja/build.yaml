@@ -1,0 +1,11 @@
+build_from:
+  amd64: "ghcr.io/home-assistant/amd64-base:3.21"
+  aarch64: "ghcr.io/home-assistant/aarch64-base:3.21"
+args:
+  BUILD_VERSION: "1.0.0"
+  VIKUNJA_VERSION: "2.5.0"
+labels:
+  org.opencontainers.image.title: "Vikunja for Home Assistant"
+  org.opencontainers.image.description: "Self-hosted task and project management"
+  org.opencontainers.image.source: "https://github.com/go-vikunja/vikunja"
+  org.opencontainers.image.licenses: "AGPL-3.0"

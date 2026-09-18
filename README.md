@@ -17,6 +17,7 @@
 |--------|-------------|---------|
 | [FreeLLMApi for HA](freellmapi/) | OpenAI-compatible LLM gateway with 34+ free providers | 1.0.5 |
 | [Vaultwarden for HA](vaultwarden/) | Self-hosted Bitwarden-compatible password manager | 1.0.0 |
+| [Vikunja for HA](vikunja/) | Self-hosted task and project management | 1.0.0 |
 
 ---
 
@@ -58,6 +59,25 @@ Home Assistant
 
 ---
 
+## Vikunja for HA
+
+A port of [Vikunja](https://vikunja.io) by the [Vikunja team](https://github.com/go-vikunja). Full-featured task management with lists, kanban boards, Gantt charts, calendar views, reminders, team collaboration, and CalDAV sync with native apps like Apple Reminders.
+
+**Use it with:** any web browser, CalDAV-compatible apps (Apple Reminders, Thunderbird).
+
+```
+Home Assistant
+├── Vikunja Add-on
+│   ├── Vikunja Server (:3456)   ◄── Web browser / mobile apps
+│   ├── Web Interface (Ingress)  ◄── HA Web UI sidebar
+│   ├── CalDAV Endpoint          ◄── Apple Reminders / Thunderbird
+│   └── SQLite DB                ◄── Task and project storage
+```
+
+[Full documentation →](vikunja/README.md)
+
+---
+
 ## Installation
 
 1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
@@ -66,7 +86,7 @@ Home Assistant
    ```
    https://github.com/Sentinel-Mexico/ha-add-ons
    ```
-4. Both add-ons will appear in the store. Install whichever you need.
+4. All add-ons will appear in the store. Install whichever you need.
 
 ## Repository Structure
 
@@ -86,6 +106,11 @@ Home Assistant
 │   ├── config.yaml          # Add-on manifest
 │   ├── Dockerfile           # Multi-stage build
 │   └── run.sh               # Startup script (bashio)
+├── vikunja/                 # Vikunja add-on
+│   ├── translations/        # Add-on translations
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
 ├── README.md                # This file
 └── repository.yaml          # Add-on repository manifest
 ```
@@ -99,12 +124,13 @@ Contributions are welcome. To contribute:
 3. Make your changes and ensure the Docker build works correctly.
 4. Open a Pull Request describing the changes.
 
-For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) or [Vaultwarden](https://github.com/dani-garcia/vaultwarden).
+For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), or [Vikunja](https://github.com/go-vikunja/vikunja).
 
 ## Credits
 
 - **FreeLLMApi** by [Tashfeen Ahmed](https://github.com/tashfeenahmed) — MIT License
 - **Vaultwarden** by [Daniel Garcia](https://github.com/dani-garcia) — AGPL-3.0 License
+- **Vikunja** by the [Vikunja team](https://github.com/go-vikunja) — AGPL-3.0 License
 
 ---
 

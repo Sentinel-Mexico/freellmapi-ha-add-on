@@ -1,0 +1,45 @@
+configuration:
+  service_secret:
+    name: Service Secret
+    description: >-
+      Secret key used for JWT token signing and encryption. Leave empty to
+      auto-generate and persist one. Only set this if you are migrating from
+      an existing Vikunja instance.
+  frontend_url:
+    name: Frontend URL
+    description: >-
+      Full URL where Vikunja is accessible from the outside (e.g.
+      https://tasks.example.com). Used for email links and sharing. Leave
+      empty if you only access it through your local network.
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting.
+  registration_enabled:
+    name: Allow Registration
+    description: >-
+      Allow new users to create accounts. Disable this after you have
+      created all the accounts you need.
+  mailer_enabled:
+    name: Enable Email
+    description: >-
+      Enable email sending for notifications, password resets, and task
+      reminders. Requires SMTP configuration below.
+  mailer_host:
+    name: SMTP Host
+    description: >-
+      SMTP server hostname for sending emails.
+  mailer_port:
+    name: SMTP Port
+    description: >-
+      SMTP server port. Common values: 587 (STARTTLS), 465 (TLS), 25 (plain).
+  mailer_username:
+    name: SMTP Username
+    description: Username for SMTP authentication.
+  mailer_password:
+    name: SMTP Password
+    description: Password for SMTP authentication.
+  mailer_from_email:
+    name: SMTP From Address
+    description: >-
+      Email address that Vikunja sends from (e.g. vikunja@example.com).

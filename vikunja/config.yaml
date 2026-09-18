@@ -1,0 +1,56 @@
+name: Vikunja
+version: "1.0.0"
+slug: vikunja
+description: >-
+  Self-hosted task and project management. Open-source alternative to Todoist,
+  Trello, and Microsoft To Do — manage tasks, lists, kanban boards, and
+  calendars for your household from within Home Assistant.
+url: "https://github.com/go-vikunja/vikunja"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8101
+ingress_stream: false
+panel_icon: "mdi:checkbox-marked-outline"
+panel_title: Vikunja
+
+ports:
+  3456/tcp: 3456
+ports_description:
+  3456/tcp: "Vikunja web interface and API"
+
+map:
+  - app_config:rw
+
+options:
+  service_secret: ""
+  frontend_url: ""
+  log_level: "info"
+  registration_enabled: true
+  mailer_enabled: false
+  mailer_host: ""
+  mailer_port: 587
+  mailer_username: ""
+  mailer_password: ""
+  mailer_from_email: ""
+
+schema:
+  service_secret: "str?"
+  frontend_url: "str?"
+  log_level: "list(debug|info|warn|error)"
+  registration_enabled: bool
+  mailer_enabled: bool
+  mailer_host: "str?"
+  mailer_port: "port?"
+  mailer_username: "str?"
+  mailer_password: "password?"
+  mailer_from_email: "str?"
+
+startup: application
+stage: experimental
+advanced: false

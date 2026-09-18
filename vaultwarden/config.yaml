@@ -1,0 +1,58 @@
+name: Vaultwarden
+version: "1.0.0"
+slug: vaultwarden
+description: >-
+  Self-hosted Bitwarden-compatible password manager. Lightweight Rust
+  implementation of the Bitwarden server API — manage passwords, TOTP tokens,
+  passkeys, and secure notes for your entire household from within
+  Home Assistant.
+url: "https://github.com/dani-garcia/vaultwarden"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8100
+ingress_stream: false
+panel_icon: "mdi:shield-lock-outline"
+panel_title: Vaultwarden
+
+ports:
+  8080/tcp: 8080
+ports_description:
+  8080/tcp: "Vaultwarden web vault and API"
+
+map:
+  - ssl:ro
+  - app_config:rw
+
+options:
+  signups_allowed: true
+  admin_token: ""
+  log_level: "info"
+  domain: ""
+  smtp_host: ""
+  smtp_port: 587
+  smtp_security: "starttls"
+  smtp_username: ""
+  smtp_password: ""
+  smtp_from: ""
+
+schema:
+  signups_allowed: bool
+  admin_token: "str?"
+  log_level: "list(debug|info|warn|error)"
+  domain: "str?"
+  smtp_host: "str?"
+  smtp_port: "port?"
+  smtp_security: "list(starttls|force_tls|off)?"
+  smtp_username: "str?"
+  smtp_password: "password?"
+  smtp_from: "str?"
+
+startup: application
+stage: experimental
+advanced: false

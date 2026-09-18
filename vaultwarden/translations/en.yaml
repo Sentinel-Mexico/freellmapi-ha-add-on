@@ -1,0 +1,45 @@
+configuration:
+  signups_allowed:
+    name: Allow Signups
+    description: >-
+      Allow new users to register accounts. Disable this after you have
+      created all the accounts you need for better security.
+  admin_token:
+    name: Admin Token
+    description: >-
+      Secret token to access the Vaultwarden admin panel at /admin. Leave
+      empty to disable the admin panel. Generate a strong random string
+      for this value.
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting.
+  domain:
+    name: Domain URL
+    description: >-
+      Full URL where Vaultwarden is accessible (e.g. https://vault.example.com).
+      Required for proper email links, WebAuthn/passkeys, and push notifications.
+      Leave empty if you only access it through the local network.
+  smtp_host:
+    name: SMTP Host
+    description: >-
+      SMTP server hostname for sending emails (verification, password hints,
+      two-factor recovery). Leave empty to disable email features.
+  smtp_port:
+    name: SMTP Port
+    description: >-
+      SMTP server port. Common values: 587 (STARTTLS), 465 (TLS), 25 (plain).
+  smtp_security:
+    name: SMTP Security
+    description: >-
+      Connection security for SMTP: "starttls", "force_tls", or "off".
+  smtp_username:
+    name: SMTP Username
+    description: Username for SMTP authentication.
+  smtp_password:
+    name: SMTP Password
+    description: Password for SMTP authentication.
+  smtp_from:
+    name: SMTP From Address
+    description: >-
+      Email address that Vaultwarden sends from (e.g. vaultwarden@example.com).

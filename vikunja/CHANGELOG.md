@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3 — 2026-09-18
+
+### Fixed
+
+- Added missing openssl package required for service secret generation at startup.
+
 ## 1.0.2 — 2026-09-18
 
 ### Fixed

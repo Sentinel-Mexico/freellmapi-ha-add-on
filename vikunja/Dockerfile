@@ -24,7 +24,8 @@ RUN apk add --no-cache \
         jq \
         curl \
         ca-certificates \
-        libgcc
+        libgcc \
+        openssl
 
 RUN mkdir -p /app/vikunja /data/vikunja/files /db
 

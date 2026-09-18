@@ -1,0 +1,15 @@
+configuration:
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting sync issues.
+  gui_user:
+    name: GUI Username
+    description: >-
+      Username for the Syncthing web interface. Leave empty to allow access
+      without authentication (only recommended when using Ingress exclusively).
+  gui_password:
+    name: GUI Password
+    description: >-
+      Password for the Syncthing web interface. Must be set together with the
+      GUI username.

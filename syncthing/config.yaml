@@ -1,0 +1,51 @@
+name: Syncthing
+version: "1.0.0"
+slug: syncthing
+description: >-
+  Continuous file synchronization between your devices. Syncthing keeps your
+  files in sync across computers, phones, and NAS — encrypted, peer-to-peer,
+  and without any cloud service. Accessible from within Home Assistant.
+url: "https://github.com/syncthing/syncthing"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: true
+
+ingress: true
+ingress_port: 8104
+ingress_stream: false
+panel_icon: "mdi:folder-sync-outline"
+panel_title: Syncthing
+
+ports:
+  8384/tcp: 8384
+  22000/tcp: 22000
+  22000/udp: 22000
+  21027/udp: 21027
+ports_description:
+  8384/tcp: "Syncthing web interface"
+  22000/tcp: "Sync protocol (TCP)"
+  22000/udp: "Sync protocol (QUIC)"
+  21027/udp: "Local discovery"
+
+map:
+  - app_config:rw
+  - share:rw
+  - media:rw
+  - backup:rw
+
+options:
+  log_level: "info"
+  gui_user: ""
+  gui_password: ""
+
+schema:
+  log_level: "list(debug|info|warn|error)"
+  gui_user: "str?"
+  gui_password: "password?"
+
+startup: application
+stage: experimental
+advanced: false

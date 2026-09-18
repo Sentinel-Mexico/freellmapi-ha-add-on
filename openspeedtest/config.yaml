@@ -1,0 +1,32 @@
+name: OpenSpeedTest
+version: "1.0.0"
+slug: openspeedtest
+description: >-
+  Self-hosted network speed test. Measure your local network throughput
+  (upload, download, ping, and jitter) directly from any browser without
+  sending data to external servers — accessible from within Home Assistant.
+url: "https://github.com/openspeedtest/Docker-Image"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8105
+ingress_stream: false
+panel_icon: "mdi:speedometer"
+panel_title: SpeedTest
+
+ports:
+  3000/tcp: 3000
+ports_description:
+  3000/tcp: "OpenSpeedTest web interface"
+
+options: {}
+schema: {}
+
+startup: application
+stage: experimental
+advanced: false

@@ -1,0 +1,9 @@
+*.md
+!README.md
+icon.png
+logo.png
+build.yaml
+config.yaml
+translations
+DOCS.md
+CHANGELOG.md

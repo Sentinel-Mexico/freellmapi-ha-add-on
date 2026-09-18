@@ -20,6 +20,8 @@
 | [Vikunja for HA](vikunja/) | Self-hosted task and project management | 1.0.0 |
 | [Linkwarden for HA](linkwarden/) | Self-hosted bookmark manager and web archive | 1.0.0 |
 | [AFFiNE for HA](affine/) | Self-hosted knowledge base — docs, whiteboards, and databases | 1.0.0 |
+| [Syncthing for HA](syncthing/) | Continuous file synchronization between devices | 1.0.0 |
+| [OpenSpeedTest for HA](openspeedtest/) | Self-hosted network speed test | 1.0.0 |
 
 ---
 
@@ -119,6 +121,44 @@ Home Assistant
 
 ---
 
+## Syncthing for HA
+
+A port of [Syncthing](https://syncthing.net) by the [Syncthing team](https://github.com/syncthing). Continuous file synchronization that keeps your files in sync across computers, phones, and NAS devices — encrypted end-to-end, peer-to-peer, and without any cloud service.
+
+**Use it with:** Syncthing apps on Windows, macOS, Linux, Android (or Möbius Sync on iOS).
+
+```
+Home Assistant
+├── Syncthing Add-on
+│   ├── Syncthing Server             ◄── Peer-to-peer sync engine
+│   ├── Web GUI (:8384)              ◄── Web browser / Ingress sidebar
+│   ├── Sync Protocol (:22000)       ◄── Device-to-device transfers
+│   ├── Local Discovery (:21027)     ◄── LAN device detection
+│   └── HA Directories               ◄── /share, /media, /backup
+```
+
+[Full documentation →](syncthing/README.md)
+
+---
+
+## OpenSpeedTest for HA
+
+A port of [OpenSpeedTest](https://openspeedtest.com) by the [OpenSpeedTest team](https://github.com/openspeedtest). An HTML5-based network speed test that measures download, upload, ping, and jitter entirely in the browser. All data stays on your local network — nothing is sent to external servers.
+
+**Use it with:** any web browser on your network (desktop, mobile, smart TV).
+
+```
+Home Assistant
+├── OpenSpeedTest Add-on
+│   ├── Nginx Web Server (:3000)   ◄── Any web browser on the network
+│   ├── Web Interface (Ingress)    ◄── HA Web UI sidebar
+│   └── HTML5 Speed Test Engine    ◄── Runs entirely in the browser
+```
+
+[Full documentation →](openspeedtest/README.md)
+
+---
+
 ## Installation
 
 1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
@@ -162,6 +202,15 @@ Home Assistant
 │   ├── config.yaml          # Add-on manifest
 │   ├── Dockerfile           # Multi-stage build
 │   └── run.sh               # Startup script (bashio)
+├── syncthing/               # Syncthing add-on
+│   ├── translations/        # Add-on translations
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
+├── openspeedtest/           # OpenSpeedTest add-on
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
 ├── README.md                # This file
 └── repository.yaml          # Add-on repository manifest
 ```
@@ -175,7 +224,7 @@ Contributions are welcome. To contribute:
 3. Make your changes and ensure the Docker build works correctly.
 4. Open a Pull Request describing the changes.
 
-For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), [Linkwarden](https://github.com/linkwarden/linkwarden), or [AFFiNE](https://github.com/toeverything/AFFiNE).
+For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), [Linkwarden](https://github.com/linkwarden/linkwarden), [AFFiNE](https://github.com/toeverything/AFFiNE), [Syncthing](https://github.com/syncthing/syncthing), or [OpenSpeedTest](https://github.com/openspeedtest/Docker-Image).
 
 ## Credits
 
@@ -184,6 +233,8 @@ For contributions to the upstream projects, visit [FreeLLMApi](https://github.co
 - **Vikunja** by the [Vikunja team](https://github.com/go-vikunja) — AGPL-3.0 License
 - **Linkwarden** by [Daniel](https://github.com/daniel31x13) — AGPL-3.0 License
 - **AFFiNE** by [TOEVERYTHING](https://github.com/toeverything) — MIT License
+- **Syncthing** by the [Syncthing team](https://github.com/syncthing) — MPL-2.0 License
+- **OpenSpeedTest** by the [OpenSpeedTest team](https://github.com/openspeedtest) — MIT License
 
 ---
 

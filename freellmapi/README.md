@@ -18,53 +18,53 @@
 
 ## About
 
-**FreeLLMApi for HA** es un add-on de Home Assistant que porta el proyecto open-source [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) de [Tashfeen Ahmed](https://github.com/tashfeenahmed) al ecosistema de Home Assistant. Permite agregar los tiers gratuitos de decenas de proveedores de IA detrás de un único endpoint OpenAI-compatible que corre localmente en tu instancia de HA.
+**FreeLLMApi for HA** is a Home Assistant add-on that ports the open-source project [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) by [Tashfeen Ahmed](https://github.com/tashfeenahmed) into the Home Assistant ecosystem. It aggregates the free tiers from dozens of AI providers behind a single OpenAI-compatible endpoint running locally on your HA instance.
 
-El proyecto original — FreeLLMApi — resuelve un problema real: cada laboratorio de IA serio ofrece un tier gratuito (unos cuantos millones de tokens al mes, unos miles de requests al día). Cada uno por separado es limitado, pero apilados suman aproximadamente **7.4 mil millones de tokens por mes** de capacidad de inferencia, distribuidos en **474 familias de modelos / 635 endpoints** de proveedores gratuitos.
+The original project — FreeLLMApi — solves a real problem: every serious AI lab now offers a free tier (a few million tokens per month, a few thousand requests per day). Each one on its own is limited, but stacked together they add up to roughly **7.4 billion tokens per month** of working inference capacity, spread across **474 model families / 635 provider endpoints**.
 
-El problema de apilarlos manualmente es doloroso: treinta y cuatro SDKs diferentes, treinta y cuatro rate limits distintos, treinta y cuatro puntos de falla. FreeLLMApi colapsa todo eso en un solo endpoint compatible con OpenAI.
+The problem with stacking them manually is painful: thirty-four different SDKs, thirty-four different rate limits, thirty-four points of failure. FreeLLMApi collapses all of that into a single OpenAI-compatible endpoint.
 
 > [!NOTE]
-> Este add-on es un port comunitario mantenido por [Sentinel Mexico](https://github.com/Sentinel-Mexico).
-> Todo el crédito por el motor core va al proyecto original y sus contribuidores.
+> This add-on is a community port maintained by [Sentinel Mexico](https://github.com/Sentinel-Mexico).
+> All credit for the core engine goes to the original project and its contributors.
 
 ## Upstream: FreeLLMApi
 
-Este add-on se basa en [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), un proyecto MIT que ofrece:
+This add-on is based on [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), an MIT-licensed project that offers:
 
-| Característica | Detalle |
-|---------------|---------|
-| **Proveedores** | 34+ proveedores gratuitos: Google, Groq, Cerebras, Mistral, OpenRouter, Cloudflare, Cohere, NVIDIA, HuggingFace, Z.ai (Zhipu), ModelScope, y 22 más |
-| **Modelos** | 474 familias de modelos, 635 endpoints gratuitos (584 chat, 41 embeddings, 7 transcripción, 3 video) |
-| **Tokens** | ~7.4 mil millones de tokens/mes de capacidad libre combinada |
-| **Superficie API** | `/v1/chat/completions`, `/v1/completions`, `/v1/images/generations`, `/v1/audio/transcriptions`, `/v1/embeddings`, `/v1/models` |
-| **Catálogo** | Auto-actualización de catálogo de modelos vía feed firmado |
-| **Seguridad** | Claves cifradas con AES-256-GCM, un solo token unificado para clientes |
-| **Router** | 6 estrategias de enrutamiento, failover automático con cooldowns y rotación de claves |
-| **Dashboard** | UI React con soporte para 60 idiomas, temas claro/oscuro |
+| Feature | Details |
+|---------|---------|
+| **Providers** | 34+ free providers: Google, Groq, Cerebras, Mistral, OpenRouter, Cloudflare, Cohere, NVIDIA, HuggingFace, Z.ai (Zhipu), ModelScope, and 22 more |
+| **Models** | 474 model families, 635 free endpoints (584 chat, 41 embeddings, 7 transcription, 3 video) |
+| **Tokens** | ~7.4 billion tokens/month of combined free capacity |
+| **API Surface** | `/v1/chat/completions`, `/v1/completions`, `/v1/images/generations`, `/v1/audio/transcriptions`, `/v1/embeddings`, `/v1/models` |
+| **Catalog** | Self-updating model catalog via signed feed |
+| **Security** | Keys encrypted with AES-256-GCM, single unified token for clients |
+| **Router** | 6 routing strategies, automatic failover with cooldowns and key rotation |
+| **Dashboard** | React UI with support for 60 languages, light/dark themes |
 
-Para más información, consulta el [README del proyecto upstream](https://github.com/tashfeenahmed/freellmapi#readme) y el [catálogo de modelos](https://freellmapi.co/models.html).
+For more information, see the [upstream project README](https://github.com/tashfeenahmed/freellmapi#readme) and the [model catalog](https://freellmapi.co/models.html).
 
-## Features (Adaptaciones para Home Assistant)
+## Features (Home Assistant Adaptations)
 
-Este add-on extiende FreeLLMApi con integración nativa al ecosistema de HA:
+This add-on extends FreeLLMApi with native integration into the HA ecosystem:
 
-- **Endpoint único** — `/v1` compatible con OpenAI SDK, Anthropic SDK, y cualquier cliente OpenAI-compatible, accesible en el puerto `39101`.
-- **Smart router** — selecciona automáticamente el mejor modelo disponible con claves saludables bajo sus rate limits, y realiza failover al siguiente modelo ante errores 429/5xx.
-- **Dashboard vía Ingress** — accede al panel de administración directamente desde la sidebar de Home Assistant sin necesidad de abrir puertos adicionales.
-- **Herramientas CLI** — configura agentes de código (Claude Code, Codex CLI, Cursor, Cline, Aider, y más) desde la terminal del add-on.
-- **Base de datos flexible** — SQLite integrado por defecto, o MariaDB si usas el add-on oficial de HA.
-- **Cifrado en reposo** — claves de proveedores cifradas con AES-256-GCM; auto-genera la clave de cifrado en el primer arranque.
-- **Persistencia** — los datos se guardan en el almacenamiento persistente de HA (`/data/freellmapi`).
-- **Multi-arquitectura** — soporta `amd64` y `aarch64` con imágenes base de Home Assistant.
-- **Healthcheck** — verificación automática del servicio cada 30 segundos.
+- **Single endpoint** — `/v1` compatible with OpenAI SDK, Anthropic SDK, and any OpenAI-compatible client, accessible on port `39101`.
+- **Smart router** — automatically picks the best available model with healthy keys under their rate limits, and fails over to the next model on 429/5xx errors.
+- **Dashboard via Ingress** — access the admin panel directly from the Home Assistant sidebar without opening additional ports.
+- **CLI tools** — configure coding agents (Claude Code, Codex CLI, Cursor, Cline, Aider, and more) from the add-on terminal.
+- **Flexible database** — built-in SQLite by default, or MariaDB if you use the official HA add-on.
+- **Encryption at rest** — provider keys encrypted with AES-256-GCM; auto-generates the encryption key on first startup.
+- **Persistence** — data is stored in HA's persistent storage (`/data/freellmapi`).
+- **Multi-architecture** — supports `amd64` and `aarch64` with Home Assistant base images.
+- **Healthcheck** — automatic service verification every 30 seconds.
 
 ## Compatible Agents & Clients
 
-FreeLLMApi es compatible con una amplia gama de agentes de código y clientes:
+FreeLLMApi is compatible with a wide range of coding agents and clients:
 
-| Agente | Setup automático | Base URL |
-|--------|------------------|----------|
+| Agent | Automated Setup | Base URL |
+|-------|-----------------|----------|
 | Claude Code | `setup-claude` | root |
 | Codex CLI | `setup-codex` | `/v1` |
 | Cline | `setup-cline` | `/v1` |
@@ -76,35 +76,35 @@ FreeLLMApi es compatible con una amplia gama de agentes de código y clientes:
 | OpenClaw | `setup-openclaw` | `/v1` |
 | Hermes Agent | `setup-hermes` | `/v1` |
 
-> Además de cualquier cliente compatible con OpenAI, Anthropic SDK, Gemini SDK, u Ollama.
+> Plus any OpenAI-compatible client, Anthropic SDK, Gemini SDK, or Ollama-capable app.
 
 ## Quick Start
 
-### 1. Agregar el repositorio
+### 1. Add the repository
 
-En Home Assistant, ve a **Settings → Add-ons → Add-on Store**, haz clic en el menú de tres puntos (esquina superior derecha) → **Repositories**, pega:
+In Home Assistant, go to **Settings → Add-ons → Add-on Store**, click the three-dot menu (top-right) → **Repositories**, and paste:
 
 ```
 https://github.com/Sentinel-Mexico/freellmapi-ha-add-on
 ```
 
-### 2. Instalar el add-on
+### 2. Install the add-on
 
-Busca **FreeLLMApi for HA** en la tienda y haz clic en **Install**.
+Find **FreeLLMApi for HA** in the store and click **Install**.
 
-### 3. Iniciar y configurar
+### 3. Start and configure
 
-Inicia el add-on, abre la **Web UI** desde la sidebar de Home Assistant y agrega tus claves de proveedores gratuitos.
+Start the add-on, open the **Web UI** from the Home Assistant sidebar, and add your free-tier provider keys.
 
-### 4. Conectar clientes
+### 4. Connect clients
 
-Apunta cualquier cliente OpenAI-compatible a:
+Point any OpenAI-compatible client at:
 
 ```
-http://<TU_IP_HA>:39101/v1
+http://<YOUR_HA_IP>:39101/v1
 ```
 
-O desde otro add-on en el mismo host:
+Or from another add-on on the same host:
 
 ```
 http://homeassistant.local:39101/v1
@@ -112,68 +112,68 @@ http://homeassistant.local:39101/v1
 
 ## Configuration
 
-| Opción | Default | Descripción |
+| Option | Default | Description |
 |--------|---------|-------------|
-| `api_port` | `39101` | Puerto para el endpoint `/v1` |
-| `log_level` | `info` | Nivel de logging: `debug`, `info`, `warn`, `error` |
-| `db_engine` | `sqlite` | Motor de base de datos: `sqlite` o `mariadb` |
-| `mariadb_host` | `core-mariadb` | Host de MariaDB (solo con engine `mariadb`) |
-| `mariadb_port` | `3306` | Puerto de MariaDB (solo con engine `mariadb`) |
-| `mariadb_user` | *(vacío)* | Usuario de MariaDB |
-| `mariadb_password` | *(vacío)* | Contraseña de MariaDB |
-| `mariadb_database` | `freellmapi` | Nombre de la base de datos MariaDB |
-| `encryption_key` | *(auto)* | Clave de cifrado AES-256-GCM; dejar vacío para auto-generar |
+| `api_port` | `39101` | Port for the `/v1` endpoint |
+| `log_level` | `info` | Logging level: `debug`, `info`, `warn`, `error` |
+| `db_engine` | `sqlite` | Database engine: `sqlite` or `mariadb` |
+| `mariadb_host` | `core-mariadb` | MariaDB host (only with `mariadb` engine) |
+| `mariadb_port` | `3306` | MariaDB port (only with `mariadb` engine) |
+| `mariadb_user` | *(empty)* | MariaDB user |
+| `mariadb_password` | *(empty)* | MariaDB password |
+| `mariadb_database` | `freellmapi` | MariaDB database name |
+| `encryption_key` | *(auto)* | AES-256-GCM encryption key; leave empty to auto-generate |
 
-### Base de datos
+### Database
 
-Por defecto, FreeLLMApi usa **SQLite**, almacenando todo en un archivo dentro del almacenamiento persistente del add-on. Sin configuración adicional.
+By default, FreeLLMApi uses **SQLite**, storing everything in a single file inside the add-on's persistent storage. No additional configuration needed.
 
-Si prefieres **MariaDB**, instala primero el add-on oficial de MariaDB, luego:
+If you prefer **MariaDB**, install the official MariaDB add-on first, then:
 
-1. Cambia **Database Engine** a `mariadb`.
-2. Completa host, puerto, usuario, contraseña y nombre de base de datos.
-3. El host por defecto `core-mariadb` funciona con el add-on oficial de HA.
+1. Set **Database Engine** to `mariadb`.
+2. Fill in the host, port, user, password, and database name.
+3. The default host `core-mariadb` works with the official HA MariaDB add-on.
 
-### Clave de cifrado
+### Encryption Key
 
-Tus claves de proveedor se cifran en reposo con AES-256-GCM. El add-on auto-genera una clave en el primer arranque y la persiste. Solo necesitas configurarla manualmente si migras desde una instancia existente de FreeLLMApi.
+Your provider keys are encrypted at rest with AES-256-GCM. The add-on auto-generates an encryption key on first startup and persists it. You only need to set this manually if you are migrating from an existing FreeLLMApi instance.
 
 ## API Endpoints
 
-| Ruta | Descripción |
+| Path | Description |
 |------|-------------|
-| `/v1/chat/completions` | Completions de chat (streaming soportado) |
+| `/v1/chat/completions` | Chat completions (streaming supported) |
 | `/v1/completions` | Text completions |
 | `/v1/embeddings` | Text embeddings |
-| `/v1/images/generations` | Generación de imágenes |
-| `/v1/audio/transcriptions` | Transcripción de audio |
-| `/v1/models` | Listar modelos disponibles |
+| `/v1/images/generations` | Image generation |
+| `/v1/audio/transcriptions` | Audio transcription |
+| `/v1/models` | List available models |
 
 ## CLI Tools
 
-Abre la terminal del add-on en Home Assistant para acceder al CLI de FreeLLMApi:
+Open the add-on terminal in Home Assistant to access the FreeLLMApi CLI:
 
 ```bash
-freellmapi list              # Mostrar agentes de código soportados
-freellmapi setup-claude      # Configurar Claude Code
-freellmapi setup-cursor      # Configurar Cursor
-freellmapi setup-generic     # Configurar cualquier cliente OpenAI-compatible
+freellmapi list              # Show supported coding agent tools
+freellmapi setup-claude      # Configure Claude Code
+freellmapi setup-cursor      # Configure Cursor
+freellmapi setup-generic     # Configure any OpenAI-compatible client
 ```
 
-El CLI apunta automáticamente al servidor local. Agrega `--help` a cualquier comando para más detalles.
+The CLI automatically points to the local server. Add `--help` to any command for details.
 
 ## Integration Examples
 
-### Con Hermes
+### With Hermes
 
-En la configuración del add-on Hermes:
+In the Hermes add-on configuration:
 
 - **LLM Base URL**: `http://homeassistant.local:39101/v1`
-- **API Key**: la clave unificada de tu dashboard FreeLLMApi
+- **API Key**: the unified API key from your FreeLLMApi dashboard
 
-### Con OpenClaw
+### With OpenClaw
 
-En la configuración del bridge de OpenClaw:
+In the OpenClaw bridge configuration:
 
 ```env
 LLM_BASE_URL=http://homeassistant.local:39101/v1
@@ -186,13 +186,13 @@ LLM_API_KEY=freellmapi-...
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="http://<TU_IP_HA>:39101/v1",
-    api_key="freellmapi-..."  # desde el dashboard
+    base_url="http://<YOUR_HA_IP>:39101/v1",
+    api_key="freellmapi-..."  # from the dashboard
 )
 
 response = client.chat.completions.create(
     model="auto",
-    messages=[{"role": "user", "content": "¡Hola!"}]
+    messages=[{"role": "user", "content": "Hello!"}]
 )
 ```
 
@@ -240,36 +240,36 @@ response = client.chat.completions.create(
 
 ```
 freellmapi/
-├── cli/                     # CLI para configurar agentes de código
-│   ├── src/                 # Código fuente TypeScript
-│   └── tools.json           # Definición de herramientas CLI
-├── client/                  # Dashboard React (Vite)
-│   ├── src/                 # Componentes y lógica de UI
-│   └── vite.config.ts       # Configuración de Vite
-├── server/                  # Servidor API Node.js
-│   ├── src/                 # Código fuente TypeScript
-│   └── vitest.config.ts     # Configuración de tests
-├── shared/                  # Módulos compartidos entre server/client/cli
-├── translations/            # Traducciones del add-on para HA
-├── config.yaml              # Manifiesto del add-on (metadatos, opciones, esquema)
-├── build.yaml               # Configuración de build multi-arch
-├── Dockerfile               # Build multi-stage (builder + runtime Alpine)
-├── run.sh                   # Script de arranque (bashio, env, nginx, node)
-├── nginx-ingress.conf       # Proxy inverso para Ingress de HA
-├── DOCS.md                  # Documentación visible desde HA
-├── CHANGELOG.md             # Historial de cambios
-├── icon.png                 # Icono del add-on (256x256)
-└── logo.png                 # Logo del add-on
+├── cli/                     # CLI for coding agent configuration
+│   ├── src/                 # TypeScript source code
+│   └── tools.json           # CLI tool definitions
+├── client/                  # React dashboard (Vite)
+│   ├── src/                 # UI components and logic
+│   └── vite.config.ts       # Vite configuration
+├── server/                  # Node.js API server
+│   ├── src/                 # TypeScript source code
+│   └── vitest.config.ts     # Test configuration
+├── shared/                  # Shared modules across server/client/cli
+├── translations/            # Add-on translations for HA
+├── config.yaml              # Add-on manifest (metadata, options, schema)
+├── build.yaml               # Multi-arch build configuration
+├── Dockerfile               # Multi-stage build (builder + Alpine runtime)
+├── run.sh                   # Startup script (bashio, env, nginx, node)
+├── nginx-ingress.conf       # Reverse proxy for HA Ingress
+├── DOCS.md                  # Documentation visible from HA
+├── CHANGELOG.md             # Change history
+├── icon.png                 # Add-on icon (256x256)
+└── logo.png                 # Add-on logo
 ```
 
 ## Credits
 
-- **Proyecto original:** [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) por [Tashfeen Ahmed](https://github.com/tashfeenahmed)
-- **Port para Home Assistant:** [Sentinel Mexico](https://github.com/Sentinel-Mexico)
+- **Original project:** [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi) by [Tashfeen Ahmed](https://github.com/tashfeenahmed)
+- **Home Assistant port:** [Sentinel Mexico](https://github.com/Sentinel-Mexico)
 
 ## License
 
-Este add-on está licenciado bajo **MIT**, al igual que el proyecto upstream FreeLLMApi.
+This add-on is licensed under **MIT**, same as the upstream FreeLLMApi project.
 
 ---
 

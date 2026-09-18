@@ -1,0 +1,41 @@
+name: Netdata
+version: "1.0.0"
+slug: netdata
+description: >-
+  Real-time infrastructure monitoring. Netdata collects thousands of metrics
+  per second — CPU, memory, disk, network, containers, and applications —
+  with beautiful, interactive dashboards, accessible from within Home Assistant.
+url: "https://github.com/netdata/netdata"
+arch:
+  - amd64
+  - aarch64
+init: false
+homeassistant_api: false
+host_network: false
+
+ingress: true
+ingress_port: 8106
+ingress_stream: false
+panel_icon: "mdi:chart-line"
+panel_title: Netdata
+
+ports:
+  19999/tcp: 19999
+ports_description:
+  19999/tcp: "Netdata web dashboard"
+
+map:
+  - app_config:rw
+
+privileged:
+  - SYS_PTRACE
+
+options:
+  log_level: "info"
+
+schema:
+  log_level: "list(debug|info|warning|error)"
+
+startup: application
+stage: experimental
+advanced: false

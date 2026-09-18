@@ -22,6 +22,7 @@
 | [AFFiNE for HA](affine/) | Self-hosted knowledge base — docs, whiteboards, and databases | 1.0.0 |
 | [Syncthing for HA](syncthing/) | Continuous file synchronization between devices | 1.0.0 |
 | [OpenSpeedTest for HA](openspeedtest/) | Self-hosted network speed test | 1.0.0 |
+| [Netdata for HA](netdata/) | Real-time infrastructure monitoring with interactive dashboards | 1.0.0 |
 
 ---
 
@@ -159,6 +160,25 @@ Home Assistant
 
 ---
 
+## Netdata for HA
+
+A port of [Netdata](https://www.netdata.cloud) by the [Netdata team](https://github.com/netdata). Real-time infrastructure monitoring that collects thousands of per-second metrics — CPU, memory, disk, network, processes, and applications — with beautiful interactive dashboards, intelligent alerts, and an efficient time-series database. Everything runs locally with no cloud dependency.
+
+**Use it with:** any web browser on your network.
+
+```
+Home Assistant
+├── Netdata Add-on
+│   ├── Netdata Agent              ◄── Metric collection engine
+│   ├── Web Dashboard (:19999)     ◄── Interactive charts / Ingress
+│   ├── Time-Series DB (dbengine)  ◄── Persistent metric storage
+│   └── Plugin Collectors          ◄── CPU, memory, disk, network, etc.
+```
+
+[Full documentation →](netdata/README.md)
+
+---
+
 ## Installation
 
 1. In Home Assistant, go to **Settings → Add-ons → Add-on Store**.
@@ -211,6 +231,11 @@ Home Assistant
 │   ├── config.yaml          # Add-on manifest
 │   ├── Dockerfile           # Multi-stage build
 │   └── run.sh               # Startup script (bashio)
+├── netdata/                 # Netdata add-on
+│   ├── translations/        # Add-on translations
+│   ├── config.yaml          # Add-on manifest
+│   ├── Dockerfile           # Multi-stage build
+│   └── run.sh               # Startup script (bashio)
 ├── README.md                # This file
 └── repository.yaml          # Add-on repository manifest
 ```
@@ -224,7 +249,7 @@ Contributions are welcome. To contribute:
 3. Make your changes and ensure the Docker build works correctly.
 4. Open a Pull Request describing the changes.
 
-For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), [Linkwarden](https://github.com/linkwarden/linkwarden), [AFFiNE](https://github.com/toeverything/AFFiNE), [Syncthing](https://github.com/syncthing/syncthing), or [OpenSpeedTest](https://github.com/openspeedtest/Docker-Image).
+For contributions to the upstream projects, visit [FreeLLMApi](https://github.com/tashfeenahmed/freellmapi), [Vaultwarden](https://github.com/dani-garcia/vaultwarden), [Vikunja](https://github.com/go-vikunja/vikunja), [Linkwarden](https://github.com/linkwarden/linkwarden), [AFFiNE](https://github.com/toeverything/AFFiNE), [Syncthing](https://github.com/syncthing/syncthing), [OpenSpeedTest](https://github.com/openspeedtest/Docker-Image), or [Netdata](https://github.com/netdata/netdata).
 
 ## Credits
 
@@ -235,6 +260,7 @@ For contributions to the upstream projects, visit [FreeLLMApi](https://github.co
 - **AFFiNE** by [TOEVERYTHING](https://github.com/toeverything) — MIT License
 - **Syncthing** by the [Syncthing team](https://github.com/syncthing) — MPL-2.0 License
 - **OpenSpeedTest** by the [OpenSpeedTest team](https://github.com/openspeedtest) — MIT License
+- **Netdata** by the [Netdata team](https://github.com/netdata) — GPL-3.0 License
 
 ---
 

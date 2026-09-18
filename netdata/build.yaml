@@ -1,0 +1,11 @@
+build_from:
+  amd64: "ghcr.io/home-assistant/amd64-base:3.21"
+  aarch64: "ghcr.io/home-assistant/aarch64-base:3.21"
+args:
+  BUILD_VERSION: "1.0.0"
+  NETDATA_VERSION: "2.11.0"
+labels:
+  org.opencontainers.image.title: "Netdata for Home Assistant"
+  org.opencontainers.image.description: "Real-time infrastructure monitoring with interactive dashboards"
+  org.opencontainers.image.source: "https://github.com/netdata/netdata"
+  org.opencontainers.image.licenses: "GPL-3.0"

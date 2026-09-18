@@ -1,0 +1,6 @@
+configuration:
+  log_level:
+    name: Log Level
+    description: >-
+      Server log verbosity. Use "debug" when troubleshooting metric collection
+      issues, or "error" to reduce log volume.

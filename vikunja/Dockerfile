@@ -29,7 +29,6 @@ RUN apk add --no-cache \
 RUN mkdir -p /app/vikunja /data/vikunja/files /db
 
 COPY --from=upstream /app/vikunja/vikunja /app/vikunja/vikunja
-COPY --from=upstream /app/vikunja/dist /app/vikunja/dist
 
 RUN chmod +x /app/vikunja/vikunja
 

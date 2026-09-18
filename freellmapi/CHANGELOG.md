@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.4 — 2026-09-18
+
+### Changed
+
+- Replaced icons with pixel-perfect renders of the official FreeLLMApi SVG logo
+  (white circle + green dot on dark rounded square).
+
 ## 1.0.3 — 2026-09-18
 
 ### Fixed

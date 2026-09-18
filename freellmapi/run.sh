@@ -97,7 +97,7 @@ trap shutdown SIGTERM SIGINT
 
 # ---------- Start FreeLLMApi server -------------------------------------------
 
-SERVER_DIR="/opt/freellmapi/server"
+SERVER_DIR="/opt/freellmapi"
 
 bashio::log.info "Starting FreeLLMApi server on port ${API_PORT}..."
 bashio::log.info "  Database engine : ${DB_ENGINE}"
@@ -106,17 +106,7 @@ bashio::log.info "  API endpoint    : http://0.0.0.0:${API_PORT}/v1"
 
 cd "${SERVER_DIR}"
 
-# Try the built version first, fall back to source
-if [ -f "dist/index.js" ]; then
-    node dist/index.js &
-elif [ -f "src/index.ts" ]; then
-    npx tsx src/index.ts &
-elif [ -f "src/index.js" ]; then
-    node src/index.js &
-else
-    bashio::log.fatal "Cannot find FreeLLMApi server entry point."
-    exit 1
-fi
+node server/dist/index.js &
 
 SERVER_PID=$!
 

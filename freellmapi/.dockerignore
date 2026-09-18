@@ -1,0 +1,17 @@
+node_modules
+.git
+*.md
+!README.md
+icon.png
+logo.png
+build.yaml
+config.yaml
+translations
+DOCS.md
+CHANGELOG.md
+server/src/__tests__
+cli/tools.json
+**/*.test.ts
+**/*.spec.ts
+**/vitest.config.ts
+**/eslint.config.js

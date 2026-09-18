@@ -1,40 +1,45 @@
 ARG BUILD_FROM="ghcr.io/home-assistant/amd64-base:3.21"
 
 # ---------------------------------------------------------------------------
-# Stage 1 — build FreeLLMApi server + CLI
+# Stage 1 — install deps & build (server + cli + client)
 # ---------------------------------------------------------------------------
-FROM node:20-alpine AS builder
+FROM node:20-bookworm-slim AS builder
 
-RUN apk add --no-cache git python3 make g++
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends python3 make g++ \
+  && rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/tashfeenahmed/freellmapi.git /build
+WORKDIR /build
 
-# Build the server
-WORKDIR /build/server
-RUN npm ci --omit=dev 2>/dev/null; npm ci
-RUN npm run build 2>/dev/null || true
+COPY package.json package-lock.json ./
+COPY shared/package.json ./shared/
+COPY server/package.json ./server/
+COPY client/package.json ./client/
+COPY cli/package.json ./cli/
 
-# Ensure optional directories exist so COPY never fails
-RUN mkdir -p /build/dashboard /build/web
+RUN npm ci
 
-# Build the CLI
-WORKDIR /build/cli
-RUN npm ci --omit=dev 2>/dev/null; npm ci
-RUN npm run build 2>/dev/null || true
+COPY shared ./shared
+COPY server ./server
+COPY client ./client
+COPY cli ./cli
+
+RUN npm run build
+RUN npm prune --omit=dev
 
 # ---------------------------------------------------------------------------
-# Stage 2 — runtime
+# Stage 2 — Home Assistant runtime
 # ---------------------------------------------------------------------------
 FROM ${BUILD_FROM}
 
 ARG BUILD_VERSION
+ARG BUILD_ARCH
 
 LABEL io.hass.name="FreeLLMApi"
 LABEL io.hass.description="OpenAI-compatible LLM gateway - 34+ free providers"
 LABEL io.hass.version="${BUILD_VERSION}"
 LABEL io.hass.type="addon"
 
-# Install runtime dependencies
 RUN apk add --no-cache \
         nodejs \
         npm \
@@ -43,33 +48,26 @@ RUN apk add --no-cache \
         curl \
         openssl
 
-# Create persistent data directory
-RUN mkdir -p /data/freellmapi
+RUN mkdir -p /data/freellmapi /opt/freellmapi
 
-# Copy built FreeLLMApi server
-COPY --from=builder /build/server /opt/freellmapi/server
+COPY --from=builder /build/package.json /build/package-lock.json /opt/freellmapi/
+COPY --from=builder /build/node_modules /opt/freellmapi/node_modules
+COPY --from=builder /build/server/node_modules /opt/freellmapi/server/node_modules
+COPY --from=builder /build/shared /opt/freellmapi/shared
+COPY --from=builder /build/server/package.json /opt/freellmapi/server/package.json
+COPY --from=builder /build/server/dist /opt/freellmapi/server/dist
+COPY --from=builder /build/client/dist /opt/freellmapi/client/dist
+COPY --from=builder /build/cli/dist /opt/freellmapi/cli/dist
+COPY --from=builder /build/cli/package.json /opt/freellmapi/cli/package.json
 
-# Copy built FreeLLMApi CLI
-COPY --from=builder /build/cli /opt/freellmapi/cli
+RUN ln -sf /opt/freellmapi/cli/dist/index.js /usr/local/bin/freellmapi 2>/dev/null || true
 
-# Copy the dashboard if it exists as a separate build
-COPY --from=builder /build/dashboard /opt/freellmapi/dashboard
-COPY --from=builder /build/web /opt/freellmapi/web
-
-# Symlink CLI globally so it is accessible from the terminal
-RUN ln -sf /opt/freellmapi/cli/src/index.js /usr/local/bin/freellmapi 2>/dev/null || \
-    ln -sf /opt/freellmapi/cli/dist/index.js /usr/local/bin/freellmapi 2>/dev/null || true
-
-# Copy add-on runtime files
 COPY run.sh /
 COPY nginx-ingress.conf /etc/nginx/http.d/ingress.conf
 
-# Remove the default nginx site
 RUN rm -f /etc/nginx/http.d/default.conf
-
 RUN chmod a+x /run.sh
 
-# Health check — the API should respond on the configured port
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
     CMD curl -sf http://127.0.0.1:3001/v1/models >/dev/null || exit 1
 

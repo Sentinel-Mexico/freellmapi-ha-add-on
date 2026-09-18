@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5 — 2026-09-18
+
+### Fixed
+
+- Fixed blank screen when opening the dashboard through Home Assistant Ingress.
+  Asset paths are now relative and routing uses hash-based navigation so the
+  interface loads correctly behind the Ingress sub-path proxy.
+
 ## 1.0.4 — 2026-09-18
 
 ### Changed

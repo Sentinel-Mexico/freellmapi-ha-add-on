@@ -1,6 +1,6 @@
 <div align="center">
 
-# FreeLLMApi Home Assistant Add-on
+# Home Assistant Add-ons
 
 [![Version](https://img.shields.io/badge/version-1.0.4-blue?style=for-the-badge)](freellmapi/config.yaml)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)

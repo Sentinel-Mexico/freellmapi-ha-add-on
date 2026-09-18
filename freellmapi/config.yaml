@@ -26,7 +26,7 @@ ports_description:
   3001/tcp: "OpenAI-compatible API (/v1) — use this from Hermes, OpenClaw, or other clients"
 
 map:
-  - addon_config:rw
+  - app_config:rw
 
 options:
   api_port: 3001
@@ -50,7 +50,6 @@ schema:
   mariadb_database: "str?"
   encryption_key: "str?"
 
-image: "ghcr.io/tashfeenahmed/freellmapi-ha-addon/{arch}"
 startup: application
 stage: experimental
 advanced: false

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 — 2026-09-18
+
+### Changed
+
+- Replaced placeholder icons with the official FreeLLMApi logo.
+
 ## 1.0.1 — 2026-09-18
 
 ### Changed

@@ -53,8 +53,11 @@ export VIKUNJA_DATABASE_PATH="${DB_DIR}/vikunja.db"
 
 export VIKUNJA_FILES_BASEPATH="${FILES_DIR}"
 
+export VIKUNJA_CORS_ENABLE="false"
+
 if [ -n "${FRONTEND_URL}" ]; then
     export VIKUNJA_SERVICE_FRONTENDURL="${FRONTEND_URL}"
+    export VIKUNJA_SERVICE_PUBLICURL="${FRONTEND_URL}"
     bashio::log.info "Frontend URL set to: ${FRONTEND_URL}"
 fi
 

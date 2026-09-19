@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.4 — 2026-09-19
+
+### Fixed
+
+- Disabled CORS (not needed behind Home Assistant ingress proxy) to resolve "service.publicurl is required" startup error.
+- Set publicurl from frontend_url when provided.
+
 ## 1.0.3 — 2026-09-18
 
 ### Fixed

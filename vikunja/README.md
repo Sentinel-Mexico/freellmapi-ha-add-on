@@ -2,7 +2,7 @@
 
 # Vikunja for Home Assistant
 
-[![Version](https://img.shields.io/badge/version-1.0.5-blue?style=for-the-badge)](config.yaml)
+[![Version](https://img.shields.io/badge/version-1.0.6-blue?style=for-the-badge)](config.yaml)
 [![License](https://img.shields.io/badge/License-AGPL--3.0-green?style=for-the-badge)](https://github.com/go-vikunja/vikunja/blob/main/LICENSE)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Add--on-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white)](https://www.home-assistant.io/)
 [![Upstream](https://img.shields.io/badge/Upstream-Vikunja-blue?style=for-the-badge&logo=github)](https://github.com/go-vikunja/vikunja)

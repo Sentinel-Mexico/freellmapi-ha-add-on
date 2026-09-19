@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.6 — 2026-09-19
+
+### Fixed
+
+- Fixed blank screen in HA ingress: disabled upstream gzip so nginx can rewrite content, injected script to patch fetch/XHR to use relative URLs, and added base href so HTML asset references route through ingress correctly.
+
 ## 1.0.5 — 2026-09-19
 
 ### Fixed

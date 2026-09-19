@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5 — 2026-09-19
+
+### Fixed
+
+- Fixed blank screen when accessing Vikunja through Home Assistant ingress: rewrote absolute asset paths to relative so JS/CSS/API requests route through the ingress proxy correctly.
+
 ## 1.0.4 — 2026-09-19
 
 ### Fixed
